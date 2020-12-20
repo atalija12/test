@@ -1,0 +1,48 @@
+@extends('layouts.master')
+@section('content')
+
+    <div class="container">
+
+         
+         @if ($errors->any())
+         @foreach ($errors->all() as $error)
+             <div class="alert-danger">{{ $error }}</div>
+         @endforeach
+         @endif
+
+         <form action={{ route('create') }} method="POST" enctype="multipart/form-data"
+         >@csrf
+            
+             <div class="form-group">
+                 <label for="ime_prezime">Ime i prezime</label>
+                 <input type="text" name="ime_prezime"  class="form-control" value="{{ old('ime_prezime') }}">
+             </div>
+              
+              <div class="form-group">
+                <label for="broj_telefona">Broj telefona</label>
+                <input type="integer" name="broj_telefona"  class="form-control" value="{{ old('broj_telefona') }}">
+            </div>
+            
+             <div class="form-group">
+                 <label for="adresa">Adresa</label>
+                 <textarea  name="adresa"  class="form-control">{{ old('adresa') }}</textarea>
+             </div>
+             
+             <div class="form-group">
+                <label for="grad">Grad</label>
+                <input type='string' name="grad"  class="form-control" value="{{ old('grad') }}">
+            </div>
+
+
+            <div class="form-group">
+                <label for="datum_rodjena">Datum rodjena</label>
+                <input type="date" name="datum_rodjena"  class="form-control" value="{{ old('datum_rodjena') }}">
+            </div>
+
+
+
+               <input type="submit" value="Snimi">
+         </form>
+    </div>
+
+@endsection
